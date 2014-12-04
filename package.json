@@ -1,6 +1,6 @@
 {
   "name": "spooky-view-manager",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Manages spooky-element views",
   "main": "index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "hbsfy": "~2.2.0",
     "handlebars": "~2.0.0",
     "domready": "~1.0.7",
-    "gsap": "~1.14.2"
+    "gsap": "~1.14.2",
+    "dom-event": "0.0.3"
   }
 }

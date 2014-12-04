@@ -2,6 +2,7 @@ var SpookyEl = require('spooky-element');
 var ready = require('domready');
 var SpookyViewManager = require('../index');
 var tween = require('gsap');
+var on = require('dom-event');
 
 ready(function(){
 
@@ -32,5 +33,9 @@ ready(function(){
         manager.changeView( new SpookyEl('<div>Hi</div>') );
 
     }
+
+    on(window, 'resize', function(){
+        manager.resize(window.innerWidth, window.innerHeight);
+    });
 
 });
