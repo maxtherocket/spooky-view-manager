@@ -19,10 +19,10 @@ ready(function(){
     var manager = new SpookyViewManager( container, false );
 
     var spookA = new SpookyEl('<div>BOO!</div>').css({opacity:'0'});
-    spookA.show = function(delay, onComplete){
+    spookA.animateIn = function(delay, onComplete){
         tween.to(this, 2, {opacity:1, onComplete:onComplete});
     }
-    spookA.hide = function(delay, onComplete){
+    spookA.animateOut = function(delay, onComplete){
         tween.to(this, 2, {opacity:0, onComplete:onComplete});
     }
 
