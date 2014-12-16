@@ -1,9 +1,10 @@
 var mixes = require('mixes');
 var _ = require('lodash');
+var SpookyEl = require('spooky-element');
 
 var SpookyViewManager = function(container, overlap){
 
-    this.container = container;
+    this.container = new SpookyEl( container );
 
     this.currentView = null;
 
@@ -49,6 +50,7 @@ mixes(SpookyViewManager, {
     resize: function(w,h){
         this.width = w;
         this.height = h;
+        this.container.resize(w,h);
         if (this.currentView){
             this.currentView.resize(w,h);
         }

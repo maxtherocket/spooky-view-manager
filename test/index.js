@@ -34,8 +34,10 @@ ready(function(){
 
     }
 
-    on(window, 'resize', function(){
+    var resize = function(){
         manager.resize(window.innerWidth, window.innerHeight);
-    });
+    }
+    on(window, 'resize', resize);
+    resize();
 
 });
