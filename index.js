@@ -42,9 +42,7 @@ mixes(SpookyViewManager, {
 
     showNewView: function(viewInstance){
         viewInstance.css({
-            position: 'absolute',
-            left: 0,
-            top: 0
+            position: 'absolute'
         });
         viewInstance.appendTo( this.container );
         viewInstance.animateIn();
