@@ -1,6 +1,6 @@
 {
   "name": "spooky-view-manager",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Manages spooky-element views",
   "main": "index.js",
   "scripts": {
