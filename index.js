@@ -14,7 +14,7 @@ var SpookyViewManager = function(container, overlap){
 
 mixes(SpookyViewManager, {
 
-    changeView: function(viewInstance, overlap){
+    changeView: function(viewInstance, appendToContainer, overlap){
         overlap = (_.isBoolean(overlap)) ? overlap : this.overlap;
         if (overlap){
             // OVERLAP
@@ -24,7 +24,7 @@ mixes(SpookyViewManager, {
                     curView.destroy();
                 }.bind(this) );
             }
-            this.showNewView(viewInstance);
+            this.showNewView(viewInstance, appendToContainer);
         } else {
             // NO overlap
             if (this.currentView){
@@ -32,20 +32,20 @@ mixes(SpookyViewManager, {
                 var curView = this.currentView;
                 this.currentView.animateOut(0, function(){
                     curView.destroy();
-                    this.showNewView( viewInstance );
+                    this.showNewView( viewInstance, appendToContainer );
                 }.bind(this) );
             } else {
-                this.showNewView(viewInstance);
+                this.showNewView(viewInstance, appendToContainer);
             }
         }
     },
 
-    showNewView: function(viewInstance, append){
-        if (_.isUndefined(append)) append = true;
-        viewInstance.css({
-            position: 'absolute'
-        });
-        if (append){
+    showNewView: function(viewInstance, appendToContainer){
+        if (_.isUndefined(appendToContainer)) appendToContainer = true;
+        if (appendToContainer){
+            viewInstance.css({
+                position: 'absolute'
+            });
             viewInstance.appendTo( this.container );
         }
         viewInstance.animateIn();
