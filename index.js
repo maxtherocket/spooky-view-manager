@@ -40,11 +40,14 @@ mixes(SpookyViewManager, {
         }
     },
 
-    showNewView: function(viewInstance){
+    showNewView: function(viewInstance, append){
+        if (_.isUndefined(append)) append = true;
         viewInstance.css({
             position: 'absolute'
         });
-        viewInstance.appendTo( this.container );
+        if (append){
+            viewInstance.appendTo( this.container );
+        }
         viewInstance.animateIn();
         this.currentView = viewInstance;
     },
