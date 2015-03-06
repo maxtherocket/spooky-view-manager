@@ -16,22 +16,25 @@ mixes(SpookyViewManager, {
 
     changeView: function(viewInstance, appendToContainer, overlap){
         overlap = (_.isBoolean(overlap)) ? overlap : this.overlap;
+        if (this.currentView){
+            this.lastView = this.currentView;
+        }
         if (overlap){
-            // OVERLAP
-            if (this.currentView){
-                var curView = this.currentView;
-                this.currentView.animateOut(0, function(){
-                    curView.destroy();
+            // OVERLAP - ON
+            this.showNewView(viewInstance, appendToContainer);
+            if (this.lastView){
+                var lastView = this.lastView;
+                lastView.animateOut(0, function(){
+                    lastView.destroy();
                 }.bind(this) );
             }
-            this.showNewView(viewInstance, appendToContainer);
         } else {
-            // NO overlap
-            if (this.currentView){
+            // OVERLAP - OFF
+            if (this.lastView){
                 // Current view already exists
-                var curView = this.currentView;
-                this.currentView.animateOut(0, function(){
-                    curView.destroy();
+                var lastView = this.lastView;
+                lastView.animateOut(0, function(){
+                    lastView.destroy();
                     this.showNewView( viewInstance, appendToContainer );
                 }.bind(this) );
             } else {
@@ -48,8 +51,8 @@ mixes(SpookyViewManager, {
             });
             viewInstance.appendTo( this.container );
         }
-        viewInstance.animateIn();
         this.currentView = viewInstance;
+        viewInstance.animateIn();
     },
 
     resize: function(w,h){
