@@ -1,6 +1,7 @@
 var mixes = require('mixes');
-var _ = require('lodash');
 var SpookyEl = require('spooky-element');
+var isBoolean = require('is-boolean');
+var isUndefined = require('is-undefined');
 
 var SpookyViewManager = function(container, overlap){
 
@@ -8,14 +9,14 @@ var SpookyViewManager = function(container, overlap){
 
     this.currentView = null;
 
-    this.overlap = (_.isBoolean(overlap)) ? overlap : true;
+    this.overlap = (isBoolean(overlap)) ? overlap : true;
 
 }
 
 mixes(SpookyViewManager, {
 
     changeView: function(viewInstance, appendToContainer, overlap){
-        overlap = (_.isBoolean(overlap)) ? overlap : this.overlap;
+        overlap = (isBoolean(overlap)) ? overlap : this.overlap;
         if (this.currentView){
             this.lastView = this.currentView;
         }
@@ -44,7 +45,7 @@ mixes(SpookyViewManager, {
     },
 
     showNewView: function(viewInstance, appendToContainer){
-        if (_.isUndefined(appendToContainer)) appendToContainer = true;
+        if (isUndefined(appendToContainer)) appendToContainer = true;
         if (appendToContainer){
             viewInstance.css({
                 position: 'absolute'

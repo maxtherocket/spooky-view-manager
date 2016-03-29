@@ -2,7 +2,7 @@ var SpookyEl = require('spooky-element');
 var ready = require('domready');
 var SpookyViewManager = require('../index');
 var tween = require('gsap');
-var on = require('dom-event');
+var on = require('dom-events').on;
 
 ready(function(){
 
