@@ -47,9 +47,9 @@ mixes(SpookyViewManager, {
     showNewView: function(viewInstance, appendToContainer){
         if (isUndefined(appendToContainer)) appendToContainer = true;
         if (appendToContainer){
-            viewInstance.css({
-                position: 'absolute'
-            });
+        	if (this.overlap){
+	            viewInstance.css({ position: 'absolute' });
+	        }
             viewInstance.appendTo( this.container );
         }
         this.currentView = viewInstance;
