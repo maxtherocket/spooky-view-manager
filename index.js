@@ -15,8 +15,9 @@ var SpookyViewManager = function(container, overlap){
 
 mixes(SpookyViewManager, {
 
-    changeView: function(viewInstance, appendToContainer, overlap){
+    changeView: function(viewInstance, appendToContainer, overlap, destroy){
         overlap = (isBoolean(overlap)) ? overlap : this.overlap;
+        destroy = (isBoolean(destroy)) ? destroy : true;
         if (this.currentView){
             this.lastView = this.currentView;
         }
@@ -26,7 +27,9 @@ mixes(SpookyViewManager, {
             if (this.lastView){
                 var lastView = this.lastView;
                 lastView.animateOut(0, function(){
-                    lastView.destroy();
+                    if (destroy){
+                        lastView.destroy();
+                    }
                 }.bind(this) );
             }
         } else {
@@ -35,7 +38,9 @@ mixes(SpookyViewManager, {
                 // Current view already exists
                 var lastView = this.lastView;
                 lastView.animateOut(0, function(){
-                    lastView.destroy();
+                    if (destroy){
+                        lastView.destroy();
+                    }
                     this.showNewView( viewInstance, appendToContainer );
                 }.bind(this) );
             } else {
